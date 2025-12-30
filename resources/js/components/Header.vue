@@ -34,11 +34,20 @@
 
         <!-- Action Buttons -->
         <div class="hidden md:flex items-center space-x-4">
-          <button class="p-2 rounded-full transition-all duration-300 relative group" :class="headerScrolled ? 'hover:bg-gray-100' : 'hover:bg-white/20'">
-            <svg class="w-6 h-6 transition-colors" :class="headerScrolled ? 'text-gray-700 group-hover:text-purple-600' : 'text-white group-hover:text-purple-300'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <!-- Search Bar -->
+          <div class="relative">
+            <input
+              v-model="searchQuery"
+              type="text"
+              placeholder="Search..."
+              class="w-48 px-4 py-2 pl-10 rounded-full text-sm transition-all duration-300 focus:w-64 focus:outline-none focus:ring-2 focus:ring-purple-500"
+              :class="headerScrolled ? 'bg-gray-50 text-gray-900 placeholder-gray-400 border border-gray-200' : 'bg-white/20 backdrop-blur-lg text-white placeholder-white/70 border border-white/30'"
+            />
+            <svg class="w-4 h-4 absolute left-3 top-1/2 transform -translate-y-1/2 transition-colors" :class="headerScrolled ? 'text-gray-400' : 'text-white/70'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-          </button>
+          </div>
+
           <button class="p-2 rounded-full transition-all duration-300 relative group" :class="headerScrolled ? 'hover:bg-gray-100' : 'hover:bg-white/20'">
             <svg class="w-6 h-6 transition-colors" :class="headerScrolled ? 'text-gray-700 group-hover:text-purple-600' : 'text-white group-hover:text-purple-300'" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
@@ -51,6 +60,14 @@
             </svg>
             <span class="absolute -top-1 -right-1 bg-purple-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">2</span>
           </button>
+
+          <!-- CTA Button -->
+          <Link href="/products" class="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center space-x-2">
+            <span>Shop Now</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </Link>
         </div>
 
         <!-- Mobile Menu Button -->
@@ -194,6 +211,7 @@ import { Link, usePage } from '@inertiajs/vue3';
 const page = usePage();
 const scrolled = ref(false);
 const mobileMenuOpen = ref(false);
+const searchQuery = ref('');
 
 // Check if we're on a page that should always show the scrolled header style
 const isWhiteBackgroundPage = computed(() => {
