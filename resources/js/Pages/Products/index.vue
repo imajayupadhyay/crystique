@@ -103,8 +103,10 @@ const filters = ref({
 const products = ref([
   {
     id: 1,
+    slug: 'amethyst-crystal',
     name: 'Amethyst Crystal',
     category: 'Crystals',
+    categorySlug: 'crystals',
     price: 45.99,
     originalPrice: 59.99,
     rating: 4.8,
@@ -115,8 +117,10 @@ const products = ref([
   },
   {
     id: 2,
+    slug: 'rose-quartz-heart',
     name: 'Rose Quartz Heart',
     category: 'Crystals',
+    categorySlug: 'crystals',
     price: 32.99,
     rating: 4.9,
     reviews: 89,
@@ -126,8 +130,10 @@ const products = ref([
   },
   {
     id: 3,
+    slug: 'rudraksha-mala',
     name: 'Rudraksha Mala',
     category: 'Jaap Mala',
+    categorySlug: 'jaap-mala',
     price: 78.99,
     rating: 5.0,
     reviews: 156,
@@ -136,8 +142,10 @@ const products = ref([
   },
   {
     id: 4,
+    slug: 'clear-quartz-point',
     name: 'Clear Quartz Point',
     category: 'Crystals',
+    categorySlug: 'crystals',
     price: 28.99,
     rating: 4.7,
     reviews: 67,
@@ -146,8 +154,10 @@ const products = ref([
   },
   {
     id: 5,
+    slug: 'tiger-eye-bracelet',
     name: 'Tiger Eye Bracelet',
     category: 'Jewelry',
+    categorySlug: 'jewelry',
     price: 24.99,
     rating: 4.6,
     reviews: 92,
@@ -156,8 +166,10 @@ const products = ref([
   },
   {
     id: 6,
+    slug: 'crystal-mala-beads',
     name: 'Crystal Mala Beads',
     category: 'Jaap Mala',
+    categorySlug: 'jaap-mala',
     price: 89.99,
     rating: 4.8,
     reviews: 134,
@@ -166,8 +178,10 @@ const products = ref([
   },
   {
     id: 7,
+    slug: 'black-tourmaline',
     name: 'Black Tourmaline',
     category: 'Crystals',
+    categorySlug: 'crystals',
     price: 36.99,
     rating: 4.7,
     reviews: 78,
@@ -176,8 +190,10 @@ const products = ref([
   },
   {
     id: 8,
+    slug: 'selenite-wand',
     name: 'Selenite Wand',
     category: 'Crystals',
+    categorySlug: 'crystals',
     price: 42.99,
     rating: 4.9,
     reviews: 103,

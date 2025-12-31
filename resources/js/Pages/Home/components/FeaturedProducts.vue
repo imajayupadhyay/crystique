@@ -14,9 +14,10 @@
 
       <!-- Products Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div
+        <Link
           v-for="(product, index) in products"
           :key="index"
+          :href="`/products/${product.categorySlug}/${product.slug}`"
           class="group cursor-pointer"
         >
           <!-- Product Card -->
@@ -90,14 +91,14 @@
               </div>
             </div>
           </div>
-        </div>
+        </Link>
       </div>
 
       <!-- View All Button -->
       <div class="text-center mt-12">
-        <button class="px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-semibold hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+        <Link href="/products" class="inline-block px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-full font-semibold hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
           View All Products →
-        </button>
+        </Link>
       </div>
     </div>
   </section>
@@ -105,11 +106,15 @@
 
 <script setup>
 import { ref } from 'vue';
+import { Link } from '@inertiajs/vue3';
 
 const products = ref([
   {
+    id: 1,
+    slug: 'amethyst-crystal',
     name: 'Amethyst Crystal',
     category: 'Crystals',
+    categorySlug: 'crystals',
     description: 'Natural purple amethyst for peace and spiritual growth',
     price: 45.99,
     originalPrice: 59.99,
@@ -118,64 +123,84 @@ const products = ref([
     image: 'https://plus.unsplash.com/premium_photo-1682309734214-c04dd64e87b4?w=800&auto=format&fit=crop&q=60'
   },
   {
+    id: 3,
+    slug: 'rudraksha-mala',
     name: 'Rudraksha Mala',
     category: 'Jaap Mala',
+    categorySlug: 'jaap-mala',
     description: 'Authentic 108 beads rudraksha mala for meditation',
-    price: 89.99,
-    rating: 4.9,
+    price: 78.99,
+    rating: 5.0,
     badge: 'New',
     image: 'https://images.unsplash.com/photo-1607015640784-fc890cde1ba4?w=800&auto=format&fit=crop&q=60'
   },
   {
+    id: 2,
+    slug: 'rose-quartz-heart',
     name: 'Rose Quartz Heart',
     category: 'Crystals',
+    categorySlug: 'crystals',
     description: 'Heart-shaped rose quartz for love and compassion',
     price: 32.99,
-    originalPrice: 42.99,
-    rating: 4.7,
+    rating: 4.9,
     image: 'https://images.unsplash.com/photo-1590927157296-ba4bb1c9654e?w=800&auto=format&fit=crop&q=60'
   },
   {
-    name: 'Antique Singing Bowl',
-    category: 'Antiques',
+    id: 8,
+    slug: 'selenite-wand',
+    name: 'Selenite Wand',
+    category: 'Crystals',
+    categorySlug: 'crystals',
     description: 'Handcrafted Tibetan singing bowl for meditation',
-    price: 125.00,
-    rating: 5.0,
-    badge: 'Limited',
+    price: 42.99,
+    rating: 4.9,
+    badge: 'Popular',
     image: 'https://images.unsplash.com/photo-1545652985-5edd365b12eb?w=800&auto=format&fit=crop&q=60'
   },
   {
+    id: 4,
+    slug: 'clear-quartz-point',
     name: 'Clear Quartz Point',
     category: 'Crystals',
+    categorySlug: 'crystals',
     description: 'Large clear quartz point for energy amplification',
-    price: 55.99,
-    rating: 4.6,
+    price: 28.99,
+    rating: 4.7,
     image: 'https://images.unsplash.com/photo-1608481337062-4093bf3ed404?w=800&auto=format&fit=crop&q=60'
   },
   {
-    name: 'Tulsi Mala',
+    id: 6,
+    slug: 'crystal-mala-beads',
+    name: 'Crystal Mala Beads',
     category: 'Jaap Mala',
+    categorySlug: 'jaap-mala',
     description: 'Sacred tulsi wood mala beads for chanting',
-    price: 38.99,
+    price: 89.99,
     rating: 4.8,
     image: 'https://images.unsplash.com/photo-1603048588665-791ca8aea617?w=800&auto=format&fit=crop&q=60'
   },
   {
-    name: 'Citrine Cluster',
+    id: 7,
+    slug: 'black-tourmaline',
+    name: 'Black Tourmaline',
     category: 'Crystals',
+    categorySlug: 'crystals',
     description: 'Natural citrine cluster for abundance and prosperity',
-    price: 78.00,
-    originalPrice: 95.00,
-    rating: 4.9,
-    badge: 'Sale',
+    price: 36.99,
+    rating: 4.7,
     image: 'https://images.unsplash.com/photo-1518281420975-50db6e5d0a97?w=800&auto=format&fit=crop&q=60'
   },
   {
-    name: 'Brass Incense Holder',
-    category: 'Antiques',
+    id: 1,
+    slug: 'amethyst-crystal',
+    name: 'Amethyst Crystal',
+    category: 'Crystals',
+    categorySlug: 'crystals',
     description: 'Vintage brass incense holder with intricate design',
-    price: 42.50,
-    rating: 4.7,
+    price: 45.99,
+    originalPrice: 59.99,
+    rating: 4.8,
+    badge: 'Best Seller',
     image: 'https://images.unsplash.com/photo-1604335399105-a0c585fd81a1?w=800&auto=format&fit=crop&q=60'
   }
 ]);
