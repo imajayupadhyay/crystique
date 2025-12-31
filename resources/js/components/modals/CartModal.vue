@@ -167,11 +167,13 @@
 
         <!-- Action Buttons -->
         <div class="space-y-3">
-          <button
-            class="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-95"
+          <Link
+            href="/cart"
+            @click="closeCart"
+            class="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-95 flex items-center justify-center"
           >
-            Proceed to Checkout
-          </button>
+            View Cart
+          </Link>
           <button
             @click="closeCart"
             class="w-full px-6 py-3 border-2 border-purple-600 text-purple-600 rounded-xl font-bold hover:bg-purple-50 transition-all"

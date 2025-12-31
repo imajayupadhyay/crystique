@@ -38,6 +38,14 @@ Route::get('/products/{category}/{slug}', function ($category, $slug) {
     ]);
 });
 
+Route::get('/cart', function () {
+    return Inertia::render('Cart');
+});
+
+Route::get('/checkout', function () {
+    return Inertia::render('Checkout');
+});
+
 Route::get('/about', function () {
     return Inertia::render('About');
 });
