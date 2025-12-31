@@ -37,23 +37,23 @@
         <h4 class="font-semibold text-gray-900 mb-4">Price Range</h4>
         <div class="space-y-4">
           <div class="flex items-center justify-between text-sm text-gray-600">
-            <span>${{ localFilters.priceRange[0] }}</span>
-            <span>${{ localFilters.priceRange[1] }}</span>
+            <span>₹{{ localFilters.priceRange[0] }}</span>
+            <span>₹{{ localFilters.priceRange[1] }}</span>
           </div>
           <div class="space-y-2">
             <input
               type="range"
               min="0"
-              max="500"
-              step="10"
+              max="5000"
+              step="100"
               v-model="localFilters.priceRange[0]"
               class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
             />
             <input
               type="range"
               min="0"
-              max="500"
-              step="10"
+              max="5000"
+              step="100"
               v-model="localFilters.priceRange[1]"
               class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-purple-600"
             />
@@ -134,7 +134,7 @@ watch(localFilters, (newFilters) => {
 const clearFilters = () => {
   localFilters.value = {
     categories: [],
-    priceRange: [0, 500],
+    priceRange: [0, 5000],
     rating: 0,
     inStock: false,
   };

@@ -74,8 +74,8 @@
 
                         <!-- Price (Mobile) -->
                         <div class="lg:hidden text-right">
-                          <div class="text-xl font-bold text-purple-600">${{ (item.price * item.quantity).toFixed(2) }}</div>
-                          <div class="text-sm text-gray-500">${{ item.price.toFixed(2) }} each</div>
+                          <div class="text-xl font-bold text-purple-600">₹{{ item.price * item.quantity }}</div>
+                          <div class="text-sm text-gray-500">₹{{ item.price }} each</div>
                         </div>
                       </div>
 
@@ -113,8 +113,8 @@
 
                         <!-- Price (Desktop) -->
                         <div class="hidden lg:block text-right">
-                          <div class="text-xl font-bold text-purple-600">${{ (item.price * item.quantity).toFixed(2) }}</div>
-                          <div class="text-sm text-gray-500">${{ item.price.toFixed(2) }} each</div>
+                          <div class="text-xl font-bold text-purple-600">₹{{ item.price * item.quantity }}</div>
+                          <div class="text-sm text-gray-500">₹{{ item.price }} each</div>
                         </div>
                       </div>
 
@@ -153,29 +153,29 @@
               <div class="space-y-4 mb-6">
                 <div class="flex justify-between text-gray-700">
                   <span>Subtotal ({{ cartCount }} items)</span>
-                  <span class="font-semibold">${{ cartSubtotal.toFixed(2) }}</span>
+                  <span class="font-semibold">₹{{ cartSubtotal }}</span>
                 </div>
                 <div class="flex justify-between text-gray-700">
                   <span>Tax (10%)</span>
-                  <span class="font-semibold">${{ cartTax.toFixed(2) }}</span>
+                  <span class="font-semibold">₹{{ cartTax }}</span>
                 </div>
                 <div class="flex justify-between text-gray-700">
                   <span>Shipping</span>
                   <span class="font-semibold">
-                    {{ cartShipping === 0 ? 'FREE' : `$${cartShipping.toFixed(2)}` }}
+                    {{ cartShipping === 0 ? 'FREE' : `₹${cartShipping}` }}
                   </span>
                 </div>
 
                 <!-- Free Shipping Progress -->
-                <div v-if="cartTotal < 50" class="pt-4 border-t border-purple-200">
+                <div v-if="cartTotal < 2000" class="pt-4 border-t border-purple-200">
                   <div class="flex justify-between text-sm text-gray-600 mb-2">
-                    <span>Free shipping at $50</span>
-                    <span>${{ (50 - cartTotal).toFixed(2) }} away</span>
+                    <span>Free shipping at ₹2000</span>
+                    <span>₹{{ 2000 - cartTotal }} away</span>
                   </div>
                   <div class="w-full bg-gray-200 rounded-full h-2">
                     <div
                       class="bg-gradient-to-r from-purple-600 to-pink-600 h-2 rounded-full transition-all duration-300"
-                      :style="{ width: `${Math.min((cartTotal / 50) * 100, 100)}%` }"
+                      :style="{ width: `${Math.min((cartTotal / 2000) * 100, 100)}%` }"
                     ></div>
                   </div>
                 </div>
@@ -191,7 +191,7 @@
                 <div class="flex justify-between text-xl font-bold text-gray-900 pt-4 border-t-2 border-purple-300">
                   <span>Total</span>
                   <span class="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    ${{ cartGrandTotal.toFixed(2) }}
+                    ₹{{ cartGrandTotal }}
                   </span>
                 </div>
               </div>

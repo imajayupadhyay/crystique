@@ -99,7 +99,7 @@
               </svg>
               <div>
                 <p class="font-semibold text-gray-900">Order Total</p>
-                <p class="text-sm text-gray-600">${{ total.toFixed(2) }}</p>
+                <p class="text-sm text-gray-600">₹{{ total }}</p>
               </div>
             </div>
           </div>

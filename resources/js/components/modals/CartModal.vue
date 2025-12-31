@@ -95,7 +95,7 @@
               </Link>
               <p class="text-sm text-gray-600 mb-2">{{ item.category }}</p>
               <div class="flex items-center justify-between">
-                <span class="text-lg font-bold text-purple-600">${{ item.price.toFixed(2) }}</span>
+                <span class="text-lg font-bold text-purple-600">₹{{ item.price }}</span>
 
                 <!-- Quantity Controls -->
                 <div class="flex items-center gap-2">
@@ -139,28 +139,28 @@
         <div class="space-y-3 mb-4">
           <div class="flex justify-between text-gray-600">
             <span>Subtotal</span>
-            <span class="font-semibold">${{ cartSubtotal.toFixed(2) }}</span>
+            <span class="font-semibold">₹{{ cartSubtotal }}</span>
           </div>
           <div class="flex justify-between text-gray-600">
             <span>Tax (10%)</span>
-            <span class="font-semibold">${{ cartTax.toFixed(2) }}</span>
+            <span class="font-semibold">₹{{ cartTax }}</span>
           </div>
           <div class="flex justify-between text-gray-600">
             <span>Shipping</span>
             <span class="font-semibold">
-              {{ cartShipping === 0 ? 'FREE' : `$${cartShipping.toFixed(2)}` }}
+              {{ cartShipping === 0 ? 'FREE' : `₹${cartShipping}` }}
             </span>
           </div>
-          <div v-if="cartTotal >= 50" class="text-sm text-green-600 font-semibold">
+          <div v-if="cartTotal >= 2000" class="text-sm text-green-600 font-semibold">
             You qualified for free shipping!
           </div>
           <div v-else class="text-sm text-gray-500">
-            Add ${{ (50 - cartTotal).toFixed(2) }} more for free shipping
+            Add ₹{{ 2000 - cartTotal }} more for free shipping
           </div>
           <div class="flex justify-between text-lg font-bold text-gray-900 pt-3 border-t border-gray-300">
             <span>Total</span>
             <span class="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              ${{ cartGrandTotal.toFixed(2) }}
+              ₹{{ cartGrandTotal }}
             </span>
           </div>
         </div>

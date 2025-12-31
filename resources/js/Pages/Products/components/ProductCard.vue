@@ -71,8 +71,8 @@
       <div class="flex items-center justify-between">
         <div>
           <div class="flex items-baseline gap-2">
-            <span class="text-2xl font-bold text-gray-900">${{ product.price }}</span>
-            <span v-if="product.originalPrice" class="text-sm text-gray-400 line-through">${{ product.originalPrice }}</span>
+            <span class="text-2xl font-bold text-gray-900">₹{{ product.price }}</span>
+            <span v-if="product.originalPrice" class="text-sm text-gray-400 line-through">₹{{ product.originalPrice }}</span>
           </div>
         </div>
         <button

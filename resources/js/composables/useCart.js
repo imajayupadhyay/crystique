@@ -101,7 +101,7 @@ export function useCart() {
   const cartTax = computed(() => cartTotal.value * 0.1); // 10% tax
 
   const cartShipping = computed(() => {
-    return cartTotal.value > 50 ? 0 : 5.99;
+    return cartTotal.value >= 2000 ? 0 : 99;
   });
 
   const cartGrandTotal = computed(() => {

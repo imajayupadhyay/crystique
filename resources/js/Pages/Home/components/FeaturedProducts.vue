@@ -79,8 +79,8 @@
 
               <div class="flex items-center justify-between pt-2">
                 <div>
-                  <span class="text-2xl font-bold text-gray-900">${{ product.price }}</span>
-                  <span v-if="product.originalPrice" class="text-sm text-gray-400 line-through ml-2">${{ product.originalPrice }}</span>
+                  <span class="text-2xl font-bold text-gray-900">₹{{ product.price }}</span>
+                  <span v-if="product.originalPrice" class="text-sm text-gray-400 line-through ml-2">₹{{ product.originalPrice }}</span>
                 </div>
                 <div class="flex items-center space-x-1 text-green-600 text-sm font-medium">
                   <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">

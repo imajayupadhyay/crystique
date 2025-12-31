@@ -135,10 +135,10 @@
             <!-- Price -->
             <div class="flex items-baseline gap-4">
               <span class="text-5xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                ${{ product.price }}
+                ₹{{ product.price }}
               </span>
               <span v-if="product.originalPrice" class="text-2xl text-gray-400 line-through">
-                ${{ product.originalPrice }}
+                ₹{{ product.originalPrice }}
               </span>
               <span v-if="product.originalPrice" class="px-3 py-1 bg-green-100 text-green-700 text-sm font-bold rounded-full">
                 Save {{ Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100) }}%

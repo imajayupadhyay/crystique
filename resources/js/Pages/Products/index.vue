@@ -106,7 +106,7 @@ const loading = ref(false);
 
 const filters = ref({
   categories: [],
-  priceRange: [0, 500],
+  priceRange: [0, 5000],
   rating: 0,
   inStock: false,
 });

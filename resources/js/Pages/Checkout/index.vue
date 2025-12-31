@@ -278,7 +278,7 @@
                       <p class="text-sm text-gray-600">Quantity: {{ item.quantity }}</p>
                     </div>
                     <div class="text-right">
-                      <p class="font-bold text-purple-600">${{ (item.price * item.quantity).toFixed(2) }}</p>
+                      <p class="font-bold text-purple-600">₹{{ item.price * item.quantity }}</p>
                     </div>
                   </div>
                 </div>
@@ -310,22 +310,22 @@
               <div class="space-y-4 mb-6">
                 <div class="flex justify-between text-gray-700">
                   <span>Subtotal ({{ cartCount }} items)</span>
-                  <span class="font-semibold">${{ cartSubtotal.toFixed(2) }}</span>
+                  <span class="font-semibold">₹{{ cartSubtotal }}</span>
                 </div>
                 <div class="flex justify-between text-gray-700">
                   <span>Tax</span>
-                  <span class="font-semibold">${{ cartTax.toFixed(2) }}</span>
+                  <span class="font-semibold">₹{{ cartTax }}</span>
                 </div>
                 <div class="flex justify-between text-gray-700">
                   <span>Shipping</span>
                   <span class="font-semibold">
-                    {{ cartShipping === 0 ? 'FREE' : `$${cartShipping.toFixed(2)}` }}
+                    {{ cartShipping === 0 ? 'FREE' : `₹${cartShipping}` }}
                   </span>
                 </div>
                 <div class="flex justify-between text-xl font-bold text-gray-900 pt-4 border-t-2 border-purple-300">
                   <span>Total</span>
                   <span class="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-                    ${{ cartGrandTotal.toFixed(2) }}
+                    ₹{{ cartGrandTotal }}
                   </span>
                 </div>
               </div>

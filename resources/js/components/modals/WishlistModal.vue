@@ -100,9 +100,9 @@
               <p class="text-sm text-gray-600 mb-2">{{ item.category }}</p>
               <div class="flex items-center justify-between">
                 <div>
-                  <span class="text-lg font-bold text-purple-600">${{ item.price.toFixed(2) }}</span>
+                  <span class="text-lg font-bold text-purple-600">₹{{ item.price }}</span>
                   <span v-if="item.originalPrice" class="text-sm text-gray-400 line-through ml-2">
-                    ${{ item.originalPrice.toFixed(2) }}
+                    ₹{{ item.originalPrice }}
                   </span>
                 </div>
 
