@@ -60,6 +60,84 @@
             <span v-if="cartCount > 0" class="absolute -top-1 -right-1 bg-purple-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">{{ cartCount }}</span>
           </button>
 
+          <!-- Account Dropdown -->
+          <div class="relative">
+            <button
+              @click="accountDropdownOpen = !accountDropdownOpen"
+              class="p-2 rounded-full transition-all duration-300 relative group hover:bg-gray-100"
+            >
+              <svg class="w-6 h-6 text-gray-700 group-hover:text-purple-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+            </button>
+
+            <!-- Dropdown Menu -->
+            <transition
+              enter-active-class="transition ease-out duration-200"
+              enter-from-class="opacity-0 scale-95"
+              enter-to-class="opacity-100 scale-100"
+              leave-active-class="transition ease-in duration-150"
+              leave-from-class="opacity-100 scale-100"
+              leave-to-class="opacity-0 scale-95"
+            >
+              <div
+                v-if="accountDropdownOpen"
+                class="absolute right-0 mt-2 w-56 bg-white rounded-xl shadow-xl border border-gray-100 py-2 z-50"
+              >
+                <!-- Guest Menu -->
+                <template v-if="!customer">
+                  <Link
+                    href="/login"
+                    class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors"
+                    @click="accountDropdownOpen = false"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+                    </svg>
+                    <span class="font-semibold">Login</span>
+                  </Link>
+                  <Link
+                    href="/register"
+                    class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors"
+                    @click="accountDropdownOpen = false"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                    </svg>
+                    <span class="font-semibold">Register</span>
+                  </Link>
+                </template>
+
+                <!-- Authenticated Menu -->
+                <template v-else>
+                  <div class="px-4 py-3 border-b border-gray-100">
+                    <p class="text-sm font-semibold text-gray-900">{{ customer.full_name }}</p>
+                    <p class="text-xs text-gray-500 mt-0.5">{{ customer.email }}</p>
+                  </div>
+                  <Link
+                    href="/account"
+                    class="flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-purple-50 hover:text-purple-600 transition-colors"
+                    @click="accountDropdownOpen = false"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                    <span class="font-semibold">My Account</span>
+                  </Link>
+                  <button
+                    @click="handleLogout"
+                    class="w-full flex items-center gap-3 px-4 py-3 text-gray-700 hover:bg-red-50 hover:text-red-600 transition-colors"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                    </svg>
+                    <span class="font-semibold">Logout</span>
+                  </button>
+                </template>
+              </div>
+            </transition>
+          </div>
+
           <!-- CTA Button -->
           <Link href="/products" class="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-full hover:shadow-lg hover:scale-105 transition-all duration-300 flex items-center space-x-2">
             <span>Shop Now</span>
@@ -174,6 +252,59 @@
             </svg>
             <span>Contact</span>
           </Link>
+
+          <!-- Divider -->
+          <div class="border-t border-gray-100 my-2"></div>
+
+          <!-- Account Links -->
+          <template v-if="!customer">
+            <Link
+              href="/login"
+              @click="mobileMenuOpen = false"
+              class="flex items-center space-x-3 px-4 py-4 rounded-xl font-semibold transition-all duration-300 hover:bg-gray-50 text-gray-700"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1" />
+              </svg>
+              <span>Login</span>
+            </Link>
+            <Link
+              href="/register"
+              @click="mobileMenuOpen = false"
+              class="flex items-center space-x-3 px-4 py-4 rounded-xl font-semibold transition-all duration-300 hover:bg-gray-50 text-gray-700"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+              </svg>
+              <span>Register</span>
+            </Link>
+          </template>
+          <template v-else>
+            <div class="px-4 py-3 bg-purple-50 rounded-xl mx-4">
+              <p class="text-sm font-semibold text-gray-900">{{ customer.full_name }}</p>
+              <p class="text-xs text-gray-500 mt-0.5">{{ customer.email }}</p>
+            </div>
+            <Link
+              href="/account"
+              @click="mobileMenuOpen = false"
+              class="flex items-center space-x-3 px-4 py-4 rounded-xl font-semibold transition-all duration-300"
+              :class="isActive('/account') ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg' : 'hover:bg-gray-50 text-gray-700'"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              <span>My Account</span>
+            </Link>
+            <button
+              @click="handleLogout(); mobileMenuOpen = false"
+              class="w-full flex items-center space-x-3 px-4 py-4 rounded-xl font-semibold transition-all duration-300 hover:bg-red-50 text-gray-700 hover:text-red-600"
+            >
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              <span>Logout</span>
+            </button>
+          </template>
         </nav>
 
         <!-- Mobile Menu Footer -->
@@ -210,8 +341,8 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { Link, usePage } from '@inertiajs/vue3';
+import { ref, computed } from 'vue';
+import { Link, usePage, router } from '@inertiajs/vue3';
 import { useCart } from '../composables/useCart';
 import { useWishlist } from '../composables/useWishlist';
 import CartModal from './modals/CartModal.vue';
@@ -220,6 +351,10 @@ import WishlistModal from './modals/WishlistModal.vue';
 const page = usePage();
 const mobileMenuOpen = ref(false);
 const searchQuery = ref('');
+const accountDropdownOpen = ref(false);
+
+// Get customer from shared Inertia data
+const customer = computed(() => page.props.auth?.customer);
 
 // Cart and Wishlist
 const { cartCount, toggleCart } = useCart();
@@ -228,6 +363,15 @@ const { wishlistCount, toggleWishlistModal } = useWishlist();
 // Check if a route is active
 const isActive = (path) => {
   return page.url === path;
+};
+
+// Handle logout
+const handleLogout = () => {
+  router.post('/logout', {}, {
+    onFinish: () => {
+      accountDropdownOpen.value = false;
+    },
+  });
 };
 </script>
 
