@@ -59,13 +59,14 @@
         <div class="relative animate-fade-in-up animation-delay-300">
           <div class="relative group">
             <!-- Main Image Card -->
-            <div class="relative overflow-hidden rounded-3xl shadow-2xl transform group-hover:scale-105 transition-all duration-500">
-              <img
-                src="https://images.unsplash.com/photo-1608481337062-4093bf3ed404?w=800&auto=format&fit=crop&q=60"
-                alt="Crystal Collection"
-                class="w-full h-[600px] object-cover"
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+            <div class="relative overflow-hidden rounded-3xl shadow-2xl transform group-hover:scale-105 transition-all duration-500 bg-gradient-to-br from-purple-50 to-pink-50">
+              <div class="relative h-[600px] flex items-center justify-center p-8">
+                <img
+                  src="https://www.darjewellery.com/product_image/s1200__aHR0cHM6Ly9tZWRpYS5kYXJqZXdlbGxlcnkuaW4vcHJvZHVjdF9pbWFnZXMvczEyMDBfXzE3NDQzNzcwOTc0NTUuanBn"
+                  alt="Crystal Collection"
+                  class="max-w-full max-h-full object-contain"
+                />
+              </div>
             </div>
 
             <!-- Floating Glass Cards -->
