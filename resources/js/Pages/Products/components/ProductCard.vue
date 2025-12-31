@@ -94,26 +94,31 @@
 
 <script setup>
 import { Link } from '@inertiajs/vue3';
+import { useCart } from '../../../composables/useCart';
+import { useWishlist } from '../../../composables/useWishlist';
 
-defineProps({
+const props = defineProps({
   product: {
     type: Object,
     required: true,
   },
 });
 
+// Cart and Wishlist
+const { addToCart: addToCartAction, openCart } = useCart();
+const { toggleWishlist } = useWishlist();
+
 const addToWishlist = () => {
-  console.log('Added to wishlist');
-  // Wishlist functionality
+  toggleWishlist(props.product);
 };
 
 const quickView = () => {
   console.log('Quick view');
-  // Quick view functionality
+  // Quick view functionality - can be implemented later
 };
 
 const addToCart = () => {
-  console.log('Added to cart');
-  // Add to cart functionality
+  addToCartAction(props.product, 1);
+  openCart();
 };
 </script>

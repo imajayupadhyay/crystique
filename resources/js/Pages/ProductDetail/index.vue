@@ -51,8 +51,12 @@
 
               <!-- Wishlist & Share -->
               <div class="absolute top-6 right-6 flex flex-col gap-3">
-                <button class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg hover:bg-pink-600 hover:text-white transition-all duration-300 transform hover:scale-110">
-                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <button
+                  @click="toggleWishlist(product)"
+                  class="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 transform hover:scale-110"
+                  :class="isInWishlist(product.id) ? 'bg-pink-600 text-white' : 'hover:bg-pink-600 hover:text-white'"
+                >
+                  <svg class="w-6 h-6" :fill="isInWishlist(product.id) ? 'currentColor' : 'none'" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                   </svg>
                 </button>
@@ -379,11 +383,13 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import Header from '../../components/Header.vue';
 import Footer from '../../components/Footer.vue';
 import ProductCard from '../Products/components/ProductCard.vue';
+import { useCart } from '../../composables/useCart';
+import { useWishlist } from '../../composables/useWishlist';
 
 const props = defineProps({
   product: {
@@ -395,6 +401,10 @@ const props = defineProps({
     default: () => [],
   },
 });
+
+// Cart and Wishlist
+const { addToCart: addToCartAction, openCart } = useCart();
+const { toggleWishlist, isInWishlist } = useWishlist();
 
 const quantity = ref(1);
 const selectedImage = ref(props.product.images ? props.product.images[0] : props.product.image);
@@ -432,10 +442,8 @@ const previousImage = () => {
 };
 
 const addToCart = () => {
-  // Add to cart functionality
-  console.log(`Added ${quantity.value} ${props.product.name} to cart`);
-  // You can implement your cart logic here
-  alert(`Added ${quantity.value} ${props.product.name} to cart!`);
+  addToCartAction(props.product, quantity.value);
+  openCart();
 };
 </script>
 

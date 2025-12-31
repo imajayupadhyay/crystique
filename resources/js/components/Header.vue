@@ -47,17 +47,17 @@
             </svg>
           </div>
 
-          <button class="p-2 rounded-full transition-all duration-300 relative group hover:bg-gray-100">
+          <button @click="toggleWishlistModal" class="p-2 rounded-full transition-all duration-300 relative group hover:bg-gray-100">
             <svg class="w-6 h-6 text-gray-700 group-hover:text-purple-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
-            <span class="absolute -top-1 -right-1 bg-pink-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">3</span>
+            <span v-if="wishlistCount > 0" class="absolute -top-1 -right-1 bg-pink-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">{{ wishlistCount }}</span>
           </button>
-          <button class="p-2 rounded-full transition-all duration-300 relative group hover:bg-gray-100">
+          <button @click="toggleCart" class="p-2 rounded-full transition-all duration-300 relative group hover:bg-gray-100">
             <svg class="w-6 h-6 text-gray-700 group-hover:text-purple-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
-            <span class="absolute -top-1 -right-1 bg-purple-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">2</span>
+            <span v-if="cartCount > 0" class="absolute -top-1 -right-1 bg-purple-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">{{ cartCount }}</span>
           </button>
 
           <!-- CTA Button -->
@@ -184,32 +184,46 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
             </button>
-            <button class="flex-1 p-3 bg-white rounded-xl hover:bg-gray-100 transition-colors shadow-sm relative">
+            <button @click="toggleWishlistModal(); mobileMenuOpen = false" class="flex-1 p-3 bg-white rounded-xl hover:bg-gray-100 transition-colors shadow-sm relative">
               <svg class="w-6 h-6 text-gray-700 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
               </svg>
-              <span class="absolute -top-1 -right-1 bg-pink-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">3</span>
+              <span v-if="wishlistCount > 0" class="absolute -top-1 -right-1 bg-pink-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">{{ wishlistCount }}</span>
             </button>
-            <button class="flex-1 p-3 bg-white rounded-xl hover:bg-gray-100 transition-colors shadow-sm relative">
+            <button @click="toggleCart(); mobileMenuOpen = false" class="flex-1 p-3 bg-white rounded-xl hover:bg-gray-100 transition-colors shadow-sm relative">
               <svg class="w-6 h-6 text-gray-700 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
               </svg>
-              <span class="absolute -top-1 -right-1 bg-purple-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">2</span>
+              <span v-if="cartCount > 0" class="absolute -top-1 -right-1 bg-purple-500 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">{{ cartCount }}</span>
             </button>
           </div>
         </div>
       </div>
     </transition>
+
+    <!-- Cart Modal -->
+    <CartModal />
+
+    <!-- Wishlist Modal -->
+    <WishlistModal />
   </header>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { Link, usePage } from '@inertiajs/vue3';
+import { useCart } from '../composables/useCart';
+import { useWishlist } from '../composables/useWishlist';
+import CartModal from './modals/CartModal.vue';
+import WishlistModal from './modals/WishlistModal.vue';
 
 const page = usePage();
 const mobileMenuOpen = ref(false);
 const searchQuery = ref('');
+
+// Cart and Wishlist
+const { cartCount, toggleCart } = useCart();
+const { wishlistCount, toggleWishlistModal } = useWishlist();
 
 // Check if a route is active
 const isActive = (path) => {
