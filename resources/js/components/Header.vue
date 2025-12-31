@@ -66,9 +66,20 @@
               @click="accountDropdownOpen = !accountDropdownOpen"
               class="p-2 rounded-full transition-all duration-300 relative group hover:bg-gray-100"
             >
-              <svg class="w-6 h-6 text-gray-700 group-hover:text-purple-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                class="w-6 h-6 transition-colors"
+                :class="customer ? 'text-purple-600' : 'text-gray-700 group-hover:text-purple-600'"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
               </svg>
+              <!-- Logged In Indicator -->
+              <span
+                v-if="customer"
+                class="absolute -top-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full animate-pulse"
+              ></span>
             </button>
 
             <!-- Dropdown Menu -->
@@ -110,7 +121,11 @@
 
                 <!-- Authenticated Menu -->
                 <template v-else>
-                  <div class="px-4 py-3 border-b border-gray-100">
+                  <div class="px-4 py-3 border-b border-gray-100 bg-gradient-to-r from-purple-50 to-pink-50">
+                    <div class="flex items-center gap-2 mb-1.5">
+                      <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                      <p class="text-xs font-bold text-green-600">Logged In</p>
+                    </div>
                     <p class="text-sm font-semibold text-gray-900">{{ customer.full_name }}</p>
                     <p class="text-xs text-gray-500 mt-0.5">{{ customer.email }}</p>
                   </div>
@@ -280,7 +295,11 @@
             </Link>
           </template>
           <template v-else>
-            <div class="px-4 py-3 bg-purple-50 rounded-xl mx-4">
+            <div class="px-4 py-3 bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl mx-4 border-2 border-purple-200 relative">
+              <div class="flex items-center gap-2 mb-1">
+                <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                <p class="text-xs font-bold text-green-600">Logged In</p>
+              </div>
               <p class="text-sm font-semibold text-gray-900">{{ customer.full_name }}</p>
               <p class="text-xs text-gray-500 mt-0.5">{{ customer.email }}</p>
             </div>
