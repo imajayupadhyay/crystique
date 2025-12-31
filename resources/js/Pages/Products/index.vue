@@ -87,6 +87,18 @@ import Footer from '../../components/Footer.vue';
 import ProductFilters from './components/ProductFilters.vue';
 import ProductGrid from './components/ProductGrid.vue';
 
+// Receive props from backend
+const props = defineProps({
+  products: {
+    type: Array,
+    default: () => [],
+  },
+  categories: {
+    type: Object,
+    default: () => ({}),
+  },
+});
+
 const searchQuery = ref('');
 const sortBy = ref('featured');
 const filtersOpen = ref(false);
@@ -99,113 +111,9 @@ const filters = ref({
   inStock: false,
 });
 
-// Mock products data
-const products = ref([
-  {
-    id: 1,
-    slug: 'amethyst-crystal',
-    name: 'Amethyst Crystal',
-    category: 'Crystals',
-    categorySlug: 'crystals',
-    price: 45.99,
-    originalPrice: 59.99,
-    rating: 4.8,
-    reviews: 124,
-    image: 'https://images.unsplash.com/photo-1596637754862-54a81dc4a2d2?w=800&auto=format&fit=crop&q=60',
-    inStock: true,
-    badge: 'Best Seller',
-  },
-  {
-    id: 2,
-    slug: 'rose-quartz-heart',
-    name: 'Rose Quartz Heart',
-    category: 'Crystals',
-    categorySlug: 'crystals',
-    price: 32.99,
-    rating: 4.9,
-    reviews: 89,
-    image: 'https://images.unsplash.com/photo-1611080626919-7cf5a9dbab5b?w=800&auto=format&fit=crop&q=60',
-    inStock: true,
-    badge: 'New',
-  },
-  {
-    id: 3,
-    slug: 'rudraksha-mala',
-    name: 'Rudraksha Mala',
-    category: 'Jaap Mala',
-    categorySlug: 'jaap-mala',
-    price: 78.99,
-    rating: 5.0,
-    reviews: 156,
-    image: 'https://images.unsplash.com/photo-1582735689369-4fe89db7114c?w=800&auto=format&fit=crop&q=60',
-    inStock: true,
-  },
-  {
-    id: 4,
-    slug: 'clear-quartz-point',
-    name: 'Clear Quartz Point',
-    category: 'Crystals',
-    categorySlug: 'crystals',
-    price: 28.99,
-    rating: 4.7,
-    reviews: 67,
-    image: 'https://images.unsplash.com/photo-1518683374e22-b0d303cb8501?w=800&auto=format&fit=crop&q=60',
-    inStock: true,
-  },
-  {
-    id: 5,
-    slug: 'tiger-eye-bracelet',
-    name: 'Tiger Eye Bracelet',
-    category: 'Jewelry',
-    categorySlug: 'jewelry',
-    price: 24.99,
-    rating: 4.6,
-    reviews: 92,
-    image: 'https://images.unsplash.com/photo-1611652022419-a9419f74343a?w=800&auto=format&fit=crop&q=60',
-    inStock: false,
-  },
-  {
-    id: 6,
-    slug: 'crystal-mala-beads',
-    name: 'Crystal Mala Beads',
-    category: 'Jaap Mala',
-    categorySlug: 'jaap-mala',
-    price: 89.99,
-    rating: 4.8,
-    reviews: 134,
-    image: 'https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=800&auto=format&fit=crop&q=60',
-    inStock: true,
-  },
-  {
-    id: 7,
-    slug: 'black-tourmaline',
-    name: 'Black Tourmaline',
-    category: 'Crystals',
-    categorySlug: 'crystals',
-    price: 36.99,
-    rating: 4.7,
-    reviews: 78,
-    image: 'https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=800&auto=format&fit=crop&q=60',
-    inStock: true,
-  },
-  {
-    id: 8,
-    slug: 'selenite-wand',
-    name: 'Selenite Wand',
-    category: 'Crystals',
-    categorySlug: 'crystals',
-    price: 42.99,
-    rating: 4.9,
-    reviews: 103,
-    image: 'https://images.unsplash.com/photo-1584990347449-39b03b2f6021?w=800&auto=format&fit=crop&q=60',
-    inStock: true,
-    badge: 'Popular',
-  },
-]);
-
 // Filtered products
 const filteredProducts = computed(() => {
-  let result = [...products.value];
+  let result = [...props.products];
 
   // Search filter
   if (searchQuery.value) {

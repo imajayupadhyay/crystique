@@ -36,7 +36,7 @@
       <Hero />
 
       <!-- Featured Products -->
-      <FeaturedProducts />
+      <FeaturedProducts :products="featuredProducts" />
 
       <!-- Categories -->
       <Categories />
@@ -58,6 +58,13 @@ import Hero from './components/Hero.vue';
 import FeaturedProducts from './components/FeaturedProducts.vue';
 import Categories from './components/Categories.vue';
 import Features from './components/Features.vue';
+
+const props = defineProps({
+  featuredProducts: {
+    type: Array,
+    default: () => [],
+  },
+});
 </script>
 
 <style scoped>
