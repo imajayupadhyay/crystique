@@ -1,5 +1,5 @@
 <template>
-  <div class="min-h-screen bg-white">
+  <div class="min-h-screen">
     <Head title="Contact Us - Crystique" />
 
     <!-- Header -->
