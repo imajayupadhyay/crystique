@@ -11,7 +11,7 @@
       <!-- Category Grid -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         <!-- Healing Crystals -->
-        <Link href="/products/crystals" class="group relative overflow-hidden aspect-[4/3] cursor-pointer">
+        <Link href="/crystals" class="group relative overflow-hidden aspect-[4/3] cursor-pointer">
           <img
             src="https://images.unsplash.com/photo-1612528443702-f6741f70a049?w=600&h=450&fit=crop"
             alt="Healing Crystals"
@@ -29,7 +29,7 @@
         </Link>
 
         <!-- Jaap Mala -->
-        <Link href="/products/jaap-mala" class="group relative overflow-hidden aspect-[4/3] cursor-pointer">
+        <Link href="/jaap-mala" class="group relative overflow-hidden aspect-[4/3] cursor-pointer">
           <img
             src="https://images.unsplash.com/photo-1602173574767-37ac01994b2a?w=600&h=450&fit=crop"
             alt="Jaap Mala"
@@ -47,7 +47,7 @@
         </Link>
 
         <!-- Jewelry -->
-        <Link href="/products/jewelry" class="group relative overflow-hidden aspect-[4/3] cursor-pointer">
+        <Link href="/jewelry" class="group relative overflow-hidden aspect-[4/3] cursor-pointer">
           <img
             src="https://images.unsplash.com/photo-1611652022419-a9419f74343a?w=600&h=450&fit=crop"
             alt="Jewelry"
@@ -65,7 +65,7 @@
         </Link>
 
         <!-- Crystal Geodes -->
-        <Link href="/products" class="group relative overflow-hidden aspect-[4/3] cursor-pointer">
+        <Link href="/crystals" class="group relative overflow-hidden aspect-[4/3] cursor-pointer">
           <img
             src="https://images.unsplash.com/photo-1518281361980-b26bfd556770?w=600&h=450&fit=crop"
             alt="Crystal Geodes"
@@ -83,7 +83,7 @@
         </Link>
 
         <!-- Meditation Tools -->
-        <Link href="/products" class="group relative overflow-hidden aspect-[4/3] cursor-pointer">
+        <Link href="/crystals" class="group relative overflow-hidden aspect-[4/3] cursor-pointer">
           <img
             src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&h=450&fit=crop"
             alt="Meditation Tools"
@@ -101,7 +101,7 @@
         </Link>
 
         <!-- Home Decor -->
-        <Link href="/products" class="group relative overflow-hidden aspect-[4/3] cursor-pointer">
+        <Link href="/jewelry" class="group relative overflow-hidden aspect-[4/3] cursor-pointer">
           <img
             src="https://images.unsplash.com/photo-1600585152220-90363fe7e115?w=600&h=450&fit=crop"
             alt="Home Decor"

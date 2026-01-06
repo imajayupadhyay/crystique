@@ -88,7 +88,7 @@
 
       <!-- View All Button -->
       <div class="text-center">
-        <Link href="/products">
+        <Link href="/crystals">
           <button class="px-8 py-3 bg-gray-800 text-white text-xs tracking-[0.15em] uppercase hover:bg-gray-700 transition-all duration-300">
             VIEW ALL
           </button>

@@ -68,23 +68,23 @@
       <div class="container mx-auto px-6">
         <div class="flex items-center justify-center space-x-8 py-4">
           <Link
-            href="/products"
+            href="/crystals"
             class="nav-link text-sm tracking-[0.15em] font-bold text-gray-700 hover:text-black transition-colors uppercase"
-            :class="{ 'text-black': isActive('/products') || page.url.startsWith('/products/crystals') }"
+            :class="{ 'text-black': page.url.startsWith('/crystals') }"
           >
             HEALING CRYSTALS
           </Link>
           <Link
-            href="/products"
+            href="/jaap-mala"
             class="nav-link text-sm tracking-[0.15em] font-bold text-gray-700 hover:text-black transition-colors uppercase"
-            :class="{ 'text-black': page.url.startsWith('/products/jaap-mala') }"
+            :class="{ 'text-black': page.url.startsWith('/jaap-mala') }"
           >
             JAAP MALA
           </Link>
           <Link
-            href="/products"
+            href="/jewelry"
             class="nav-link text-sm tracking-[0.15em] font-bold text-gray-700 hover:text-black transition-colors uppercase"
-            :class="{ 'text-black': page.url.startsWith('/products/jewelry') }"
+            :class="{ 'text-black': page.url.startsWith('/jewelry') }"
           >
             JEWELRY
           </Link>
@@ -237,21 +237,21 @@
         <!-- Mobile Menu Navigation -->
         <nav class="flex-1 p-6 space-y-1 overflow-y-auto">
           <Link
-            href="/products"
+            href="/crystals"
             @click="mobileMenuOpen = false"
             class="block px-4 py-3 text-sm tracking-[0.1em] text-gray-700 hover:bg-gray-50 rounded-lg transition-colors uppercase"
           >
             HEALING CRYSTALS
           </Link>
           <Link
-            href="/products"
+            href="/jaap-mala"
             @click="mobileMenuOpen = false"
             class="block px-4 py-3 text-sm tracking-[0.1em] text-gray-700 hover:bg-gray-50 rounded-lg transition-colors uppercase"
           >
             JAAP MALA
           </Link>
           <Link
-            href="/products"
+            href="/jewelry"
             @click="mobileMenuOpen = false"
             class="block px-4 py-3 text-sm tracking-[0.1em] text-gray-700 hover:bg-gray-50 rounded-lg transition-colors uppercase"
           >

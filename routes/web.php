@@ -12,14 +12,24 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/products', function () {
-    return Inertia::render('Products', [
-        'products' => ProductData::all(),
-        'categories' => ProductData::getCategories(),
-    ]);
-});
+// Category Pages
+Route::get('/{category}', function ($category) {
+    $validCategories = ['crystals', 'jaap-mala', 'jewelry'];
 
-Route::get('/products/{category}/{slug}', function ($category, $slug) {
+    if (!in_array($category, $validCategories)) {
+        abort(404);
+    }
+
+    $products = ProductData::findByCategory($category);
+
+    return Inertia::render('Category/index', [
+        'category' => $category,
+        'products' => $products,
+    ]);
+})->where('category', 'crystals|jaap-mala|jewelry');
+
+// Product Detail Page
+Route::get('/{category}/{slug}', function ($category, $slug) {
     $product = ProductData::findBySlug($slug);
 
     if (!$product) {
@@ -38,7 +48,7 @@ Route::get('/products/{category}/{slug}', function ($category, $slug) {
         'product' => $product,
         'relatedProducts' => $relatedProducts,
     ]);
-});
+})->where('category', 'crystals|jaap-mala|jewelry');
 
 Route::get('/cart', function () {
     return Inertia::render('Cart');
