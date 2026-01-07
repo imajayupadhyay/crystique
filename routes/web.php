@@ -56,9 +56,22 @@ Route::get('/cart', function () {
 
 // Authentication Routes (Guest only)
 Route::middleware('guest:customer')->group(function () {
-    Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
+    // Combined auth page
+    Route::get('/auth', function () {
+        return Inertia::render('Auth/Auth');
+    })->name('auth');
+
+    // Redirect old routes to new combined auth page
+    Route::get('/register', function () {
+        return redirect('/auth');
+    })->name('register');
+
+    Route::get('/login', function () {
+        return redirect('/auth');
+    })->name('login');
+
+    // POST routes for form submissions
     Route::post('/register', [AuthController::class, 'register']);
-    Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
     Route::post('/login', [AuthController::class, 'login']);
 });
 

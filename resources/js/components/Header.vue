@@ -16,7 +16,17 @@
         <!-- Right Icons -->
         <div class="flex items-center space-x-4 w-24 justify-end">
           <!-- Account Icon -->
+          <Link
+            v-if="!customer"
+            href="/auth"
+            class="relative p-1 hover:opacity-70 transition-opacity"
+          >
+            <svg class="w-5 h-5 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          </Link>
           <button
+            v-else
             @click="accountDropdownOpen = !accountDropdownOpen"
             class="relative p-1 hover:opacity-70 transition-opacity"
           >
@@ -24,7 +34,6 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
             </svg>
             <span
-              v-if="customer"
               class="absolute -top-0.5 -right-0.5 w-2 h-2 bg-green-500 rounded-full"
             ></span>
           </button>
@@ -106,7 +115,7 @@
       </div>
     </nav>
 
-    <!-- Account Dropdown -->
+    <!-- Account Dropdown (Authenticated Users Only) -->
     <transition
       enter-active-class="transition ease-out duration-200"
       enter-from-class="opacity-0 scale-95"
@@ -116,47 +125,26 @@
       leave-to-class="opacity-0 scale-95"
     >
       <div
-        v-if="accountDropdownOpen"
+        v-if="accountDropdownOpen && customer"
         class="absolute right-6 top-16 w-56 bg-white rounded-lg shadow-xl border border-gray-200 py-2 z-50"
       >
-        <!-- Guest Menu -->
-        <template v-if="!customer">
-          <Link
-            href="/login"
-            class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-            @click="accountDropdownOpen = false"
-          >
-            Login
-          </Link>
-          <Link
-            href="/register"
-            class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-            @click="accountDropdownOpen = false"
-          >
-            Register
-          </Link>
-        </template>
-
-        <!-- Authenticated Menu -->
-        <template v-else>
-          <div class="px-4 py-3 border-b border-gray-100">
-            <p class="text-sm font-medium text-gray-900">{{ customer.full_name }}</p>
-            <p class="text-xs text-gray-500 mt-0.5">{{ customer.email }}</p>
-          </div>
-          <Link
-            href="/account"
-            class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-            @click="accountDropdownOpen = false"
-          >
-            My Account
-          </Link>
-          <button
-            @click="handleLogout"
-            class="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
-          >
-            Logout
-          </button>
-        </template>
+        <div class="px-4 py-3 border-b border-gray-100">
+          <p class="text-sm font-medium text-gray-900">{{ customer.full_name }}</p>
+          <p class="text-xs text-gray-500 mt-0.5">{{ customer.email }}</p>
+        </div>
+        <Link
+          href="/account"
+          class="block px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+          @click="accountDropdownOpen = false"
+        >
+          My Account
+        </Link>
+        <button
+          @click="handleLogout"
+          class="w-full text-left px-4 py-2.5 text-sm text-gray-700 hover:bg-gray-50 transition-colors"
+        >
+          Logout
+        </button>
       </div>
     </transition>
 
@@ -272,26 +260,9 @@
             CONTACT
           </Link>
 
-          <div class="border-t border-gray-200 my-4"></div>
-
-          <!-- Account Links -->
-          <template v-if="!customer">
-            <Link
-              href="/login"
-              @click="mobileMenuOpen = false"
-              class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
-            >
-              Login
-            </Link>
-            <Link
-              href="/register"
-              @click="mobileMenuOpen = false"
-              class="block px-4 py-3 text-sm text-gray-700 hover:bg-gray-50 rounded-lg transition-colors"
-            >
-              Register
-            </Link>
-          </template>
-          <template v-else>
+          <!-- Account Section -->
+          <template v-if="customer">
+            <div class="border-t border-gray-200 my-4"></div>
             <div class="px-4 py-3 bg-gray-50 rounded-lg mb-2">
               <p class="text-sm font-medium text-gray-900">{{ customer.full_name }}</p>
               <p class="text-xs text-gray-500 mt-0.5">{{ customer.email }}</p>
