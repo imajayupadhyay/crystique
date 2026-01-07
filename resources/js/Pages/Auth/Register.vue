@@ -1,29 +1,26 @@
 <template>
-  <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+  <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
     <Head title="Register - Crystique" />
 
     <div class="max-w-md w-full">
       <!-- Logo and Header -->
       <div class="text-center mb-8">
-        <Link href="/" class="inline-flex items-center space-x-2 mb-6">
-          <div class="w-12 h-12 bg-gradient-to-br from-purple-600 to-pink-600 rounded-lg flex items-center justify-center shadow-lg">
-            <span class="text-white font-bold text-2xl">C</span>
-          </div>
-          <span class="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-            Crystique
-          </span>
+        <Link href="/" class="inline-block mb-6">
+          <h1 class="text-3xl tracking-[0.3em] font-serif text-gray-900 hover:text-gray-700 transition-colors">
+            CRYSTIQUE
+          </h1>
         </Link>
-        <h2 class="text-3xl font-bold text-gray-900 mb-2">Create your account</h2>
+        <h2 class="text-3xl font-medium text-gray-900 mb-2 tracking-wide">Create your account</h2>
         <p class="text-gray-600">Join us and start your crystal journey today</p>
       </div>
 
       <!-- Registration Form Card -->
-      <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-8">
+      <div class="bg-white border border-gray-300 p-8">
         <form @submit.prevent="handleSubmit" class="space-y-6">
           <!-- Name Fields -->
           <div class="grid grid-cols-2 gap-4">
             <div>
-              <label for="first_name" class="block text-sm font-semibold text-gray-700 mb-2">
+              <label for="first_name" class="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wider">
                 First Name
               </label>
               <input
@@ -31,14 +28,14 @@
                 v-model="form.first_name"
                 type="text"
                 required
-                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-gray-900 transition-colors"
                 :class="{ 'border-red-500': errors.first_name }"
                 placeholder="John"
               />
               <p v-if="errors.first_name" class="mt-1 text-sm text-red-600">{{ errors.first_name }}</p>
             </div>
             <div>
-              <label for="last_name" class="block text-sm font-semibold text-gray-700 mb-2">
+              <label for="last_name" class="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wider">
                 Last Name
               </label>
               <input
@@ -46,7 +43,7 @@
                 v-model="form.last_name"
                 type="text"
                 required
-                class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-gray-900 transition-colors"
                 :class="{ 'border-red-500': errors.last_name }"
                 placeholder="Doe"
               />
@@ -56,7 +53,7 @@
 
           <!-- Email Field -->
           <div>
-            <label for="email" class="block text-sm font-semibold text-gray-700 mb-2">
+            <label for="email" class="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wider">
               Email Address
             </label>
             <input
@@ -64,7 +61,7 @@
               v-model="form.email"
               type="email"
               required
-              class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+              class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-gray-900 transition-colors"
               :class="{ 'border-red-500': errors.email }"
               placeholder="john@example.com"
             />
@@ -73,7 +70,7 @@
 
           <!-- Password Field -->
           <div>
-            <label for="password" class="block text-sm font-semibold text-gray-700 mb-2">
+            <label for="password" class="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wider">
               Password
             </label>
             <input
@@ -81,7 +78,7 @@
               v-model="form.password"
               type="password"
               required
-              class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+              class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-gray-900 transition-colors"
               :class="{ 'border-red-500': errors.password }"
               placeholder="••••••••"
             />
@@ -91,7 +88,7 @@
 
           <!-- Confirm Password Field -->
           <div>
-            <label for="password_confirmation" class="block text-sm font-semibold text-gray-700 mb-2">
+            <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wider">
               Confirm Password
             </label>
             <input
@@ -99,7 +96,7 @@
               v-model="form.password_confirmation"
               type="password"
               required
-              class="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+              class="w-full px-4 py-3 border border-gray-300 focus:outline-none focus:border-gray-900 transition-colors"
               placeholder="••••••••"
             />
           </div>
@@ -108,7 +105,7 @@
           <button
             type="submit"
             :disabled="processing"
-            class="w-full px-6 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-xl font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+            class="w-full px-6 py-4 bg-gray-900 text-white text-xs tracking-[0.15em] uppercase font-medium hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
           >
             <svg v-if="processing" class="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
               <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
@@ -120,16 +117,16 @@
 
         <!-- Divider -->
         <div class="mt-6 flex items-center">
-          <div class="flex-1 border-t border-gray-200"></div>
+          <div class="flex-1 border-t border-gray-300"></div>
           <span class="px-4 text-sm text-gray-500">or</span>
-          <div class="flex-1 border-t border-gray-200"></div>
+          <div class="flex-1 border-t border-gray-300"></div>
         </div>
 
         <!-- Login Link -->
         <div class="mt-6 text-center">
           <p class="text-gray-600">
             Already have an account?
-            <Link href="/login" class="font-semibold text-purple-600 hover:text-purple-700 transition-colors">
+            <Link href="/login" class="font-medium text-gray-900 hover:text-gray-700 transition-colors uppercase tracking-wider text-sm">
               Sign in
             </Link>
           </p>
@@ -139,24 +136,24 @@
       <!-- Features -->
       <div class="mt-8 grid grid-cols-3 gap-4 text-center">
         <div class="flex flex-col items-center">
-          <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-2">
-            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="w-12 h-12 border border-gray-300 flex items-center justify-center mb-2">
+            <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
             </svg>
           </div>
           <p class="text-xs text-gray-600 font-medium">Free Shipping</p>
         </div>
         <div class="flex flex-col items-center">
-          <div class="w-12 h-12 bg-pink-100 rounded-full flex items-center justify-center mb-2">
-            <svg class="w-6 h-6 text-pink-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="w-12 h-12 border border-gray-300 flex items-center justify-center mb-2">
+            <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
             </svg>
           </div>
           <p class="text-xs text-gray-600 font-medium">Secure Payments</p>
         </div>
         <div class="flex flex-col items-center">
-          <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mb-2">
-            <svg class="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="w-12 h-12 border border-gray-300 flex items-center justify-center mb-2">
+            <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
             </svg>
           </div>

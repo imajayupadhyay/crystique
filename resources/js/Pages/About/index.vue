@@ -6,7 +6,7 @@
     <Header />
 
     <!-- About Page Content -->
-    <div class="pt-28">
+    <div class="pt-36" style="background-color: #ddd9ce;">
       <!-- Hero Section -->
       <AboutHero />
 
